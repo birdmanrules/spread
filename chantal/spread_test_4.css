@@ -1,0 +1,10 @@
+h1{
+	font: 400 45px/0.5 'Raleway', Helvetica, sans-serif;
+}
+p{
+	font: 400 14px/1.5 'Average', Times, serif;
+}
+
+letter-spacing: 7px;
+
+.first-example { letter-spacing: 7px; }
