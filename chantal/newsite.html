@@ -35,12 +35,120 @@
 			});
 		});
 	</script>
-	<script>
-		function plsRito(){
-			document.getElementById("flip").style.visibility = "visible";
-			
+	
+<script>
+
+src="bundle.js"
+var articleExtractor = require('article-extractor');
+var magnifyCheck=0;
+var currLine = 0;
+var maxLine = 0;
+var normalFontSize = parseInt($("body").css("font-size"));
+var wheelFontSize = normalFontSize + 1 + "px";
+var magnifyFontSize = wheelFontSize + 1 + "px";
+
+
+function plsRito(){
+		articleExtractor.extractData(urlText,function(err,data){
+		});
+		$("article").append(data["content"]);
+		splitLines();
+		window.onresize=separateLines;
+		document.getElementById("articleTitle").text=data["title"];
+		document.getElementById("articleHeader").text=data["title"];
+		document.getElementById("flip").style.visibility = "visible";
 		}
-	</script>
+
+function splitLines(){
+for(var i = 0; i<document.getElementsByTagName('p').length;i++){
+var p = document.getElementsByTagName('p')[i]; //CHANGE THIS
+p.innerHTML = p.innerText.split(/\s/).map(function(word){ //span every single word!!!!
+return '<span>' + word + '</span>'}).join(' ');//SPAN ALL OF THEM
+}
+}
+		
+function separateLines(){ 
+var lines = []; //list of lines
+var line; //temporary line storage variable
+for (var j = 0; j<document.getElementsByTagName('p').length;j++){ //going for every paragraph
+	var p = document.getElementsByTagName('p')[j]; //grabs the next paragraph
+	var words = p.getElementsByTagName('span'); //assuming words are separated by spans (splitlines must be run first), grab all words
+	var lastTop; //? default value 0?
+	for (var i = 0; i < words.length; i++){ //for every word 
+		var word = words[i]; //take that word
+		if (word.offsetTop != lastTop){ //if the word's offset isn't the same as the last offset
+			lastTop = word.offsetTop; //make the lastTop the word's offset (this offset checks distance from top, which will be the same along the same line)
+			line = []; //since it's a new line, wipe the current line?
+			lines.push(line); //push a new line into lines
+		}
+		line.push(word); //either way the word should go onto the current line, whether it's new or part of the current line
+	}
+	return lines; //final array of lines
+}
+}
+
+function updateVars(){
+lineList=separateLines();
+maxLine=lineList.length;
+if(currLine>maxline){
+currLine=maxline;
+}
+}
+
+function magnify(){
+updateVars();
+var mainLine = '<span style="font-size: magnifyFontSize">' + lineList[currLine] + '</span>';
+if(currLine==0){
+var belowLine = '<span style="font-size: wheelFontSize">' + lineList[currLine + 1] + '</span>';
+}else if(currLine==maxLine){
+var aboveLine ='<span style="font-size: wheelFontSize">' + lineList[currLine - 1] + '</span>';
+}else{
+var belowLine = '<span style="font-size: wheelFontSize">' + lineList[currLine + 1] + '</span>';
+var aboveLine ='<span style="font-size: wheelFontSize">' + lineList[currLine - 1] + '</span>';
+}
+}
+
+function demagnify(){
+var mainLine = '<span style="font-size: normalFontSize">' + lineList[currLine] + '</span>';
+if(currLine==0){
+var belowLine = '<span style="font-size: normalFontSize">' + lineList[currLine + 1] + '</span>';
+}else if(currLine==maxLine){
+var aboveLine ='<span style="font-size: normalFontSize">' + lineList[currLine - 1] + '</span>';
+}else{
+var belowLine = '<span style="font-size: normalFontSize">' + lineList[currLine + 1] + '</span>';
+var aboveLine ='<span style="font-size: normalFontSize">' + lineList[currLine - 1] + '</span>';
+}
+}
+
+
+$(document).keyup( function (e) {
+if (e.which==38 && magnifyCheck==1){
+demagnify();
+currline = currline - 1;
+magnify();
+}
+if (e.which==40 && magnifyCheck==1){
+demagnify();
+currline = currline + 1;
+magnify();
+}
+if (e.which==36){
+magnifyCheck = Math.abs(magnifyCheck-1);
+if(magnifyCheck==1){
+magnify();
+}else{
+demagnify();
+}
+}
+});
+
+</script>
+
+	<title id= "articleTitle">Article</title>
+
+	<br></br>
+	<br></br>
+	
 
 	<style id = "summary"> 
 		#panel, #flip {
@@ -62,7 +170,7 @@
 	<meta charset=utf-8/>
 	<meta name="description" content="description">
 
-	<title>Article</title>
+	
 
 	</head>
 
@@ -70,8 +178,15 @@
 	<div id="flip" style = "visibility : hidden">Click to Reveal Summary</div>
 	<div id="panel" >Summary Element</div>
 
-		
 
+	
+	
+	<br></br>
+	<br></br>
+	<article id="articleMain">
+		<h1 id="articleHeader"></h1>
+	</article>
+	<br></br>
 	<br></br>
 
 	<form method = "GET">
