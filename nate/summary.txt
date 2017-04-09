@@ -1,0 +1,21 @@
+Calculus lets us start with �circumference = 2 * pi * r� and figure out the others � the Greeks would have appreciated this.
+Table of Contents [hide]
+1 Math, art, and ideas
+2 Ok bub, what�s your great idea?
+3 But calculus is hard!
+4 So what�s calculus about?
+5 An Example, Please
+6 A note on examples
+7 A note on rigor (for the math geeks)
+8 Other Posts In This Series
+Math, art, and ideas
+Specifically, staying encouraged despite
+
+Teachers focused more on publishing/perishing than teaching
+Self-fulfilling prophecies that math is difficult, boring, unpopular or �not your subject�
+Textbooks and curriculums more concerned with profits and test results than insight
+�A Mathematician�s Lament� [pdf] is an excellent essay on this issue that resonated with many people:
+
+��if I had to design a mechanism for the express purpose of destroying a child�s natural curiosity and love of pattern-making, I couldn�t possibly do as good a job as is currently being done � I simply wouldn�t have the imagination to come up with the kind of senseless, soul-crushing ideas that constitute contemporary mathematics education.�
+Algebra finds entire sets of numbers � if you know a and b, you can find c. Calculus finds patterns between equations: you can see how one equation (circumference = 2 * pi * r) relates to a similar one (area = pi * r^2).
+That�s great, but it can be hard to relate: honestly, how often do you know the equation for velocity for an object? Less than once a week, if that.

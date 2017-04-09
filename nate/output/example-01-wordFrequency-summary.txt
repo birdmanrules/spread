@@ -1,0 +1,5 @@
+As a game developer, you must please your shareholders, your gaming community, your employees, and perhaps more.
+Whatever side you choose, in a way, reflects what your character is as a developer.
+Who do you feel that you owe the most to? Your fans, shareholders, or your employees? If you choose shareholders and subject your employees to lower pay, or your community to pricier content, you can be seen as greedy.
+Sometimes you need to increase prices for your company's sake, but at what point does this make you greedy? On the other hand, if you give content away for free, and don't have enough money to support your employees or shareholders, you could be seen as careless.
+You could also end up giving your employees too much leeway in how they code, and suddenly you have vulnerabilities you could have prevented.
