@@ -2,68 +2,108 @@
 
 <html>
 
-<style type="text/css">
+	<style type="text/css">
 
-body 
-{
-	font-size: 14px;
-	line-height: 3;
-	letter-spacing: 7px;
-	margin: 100px;
-	padding: 50px;
-	color: white;
-	background-image: url("spread_background2.png");
-	background-repeat:no-repeat;
-background-size:cover;
-}
+		body{
+			font-size: 14px;
+			line-height: 3;
+			letter-spacing: 7px;
+			margin: 100px;
+			padding: 50px;
+			color: white;
+			background-image: url("spread_background2.png");
+			background-repeat:no-repeat;
+		background-size:cover;
 
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		}
+
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	
 	</style>
 
 	<head>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+	<script>
+	 
+		$(document).ready(function(){
+			$("#flip").click(function(){
+				$("#panel").slideToggle("slow");
+
+				
+			});
+		});
+	</script>
+	<script>
+		function plsRito(){
+			document.getElementById("flip").style.visibility = "visible";
+			
+		}
+	</script>
+
+	<style id = "summary"> 
+		#panel, #flip {
+			
+			border-radius: 10px;
+			padding: 3px;
+			text-align: center;
+			background-color: #846698;
+			border: solid 1px #C25C8F;
+		}
+
+		#panel {
+			padding: 50px;
+			display: none;
+		}
+	</style>
+
+
 	<meta charset=utf-8/>
 	<meta name="description" content="description">
 
-	<title>spread</title>
+	<title>Article</title>
 
 	</head>
 
 	<body>
+	<div id="flip" style = "visibility : hidden">Click to Reveal Summary</div>
+	<div id="panel" >Summary Element</div>
 
-		<h1><center>spread</center></h1>
+		
 
-<br></br>
+	<br></br>
 
-		<p2>
+	<form method = "GET">
 
-		</p2>
+		Please enter your URL here <br>
+		<input type = "text" name = "urlText"> <br>
+		<input type = "submit" value = "Submit" onclick = "plsRito(); return false;" >
 
-<br></br>
 
-/*<form name="extractForm" method="GET" action="/extract" onsubmit="checkInput()"> == $0*/
+	</form>
 
-<input type="text" name="url" style="width: 400pt; height: 1.8em; padding-left: 14pt;">
+	
 
-<input type="submit" value="Extract">
 
-<br></br>
 
-</form>
+	<br></br>
 
-<br></br>
 
-<div id="container">
-	<div id="footer"></div>
 
-<p3>Site created by Matthew Bird, Nathan Tadesse, Chantal Tan, and Joseph Lisi</p3>
+	<br></br>
 
-<br></br>
 
-<a href="https://github.com/MCTTAN/spread"><center><img src="white github.png" width="60" height="60" border="0"></center></a>
+	<br></br>
 
-</div>
+	<div id="container">
+		<div id="footer"></div>
+
+		<p3>Site created by Matthew Bird, Nathan Tadesse, Chantal Tan, Joseph Lisi</p3>
+
+		<br></br>
+
+	</div>
 
 	</body>
 
