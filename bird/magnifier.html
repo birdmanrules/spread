@@ -23,6 +23,18 @@ div {
 
 <script>
 
+
+splitLines();
+window.onresize=separateLines;
+
+var magnifyCheck=0;
+var currLine = 0;
+var maxLine = 0;
+var normalFontSize = parseInt($("body").css("font-size"));
+var wheelFontSize = normalFontSize + 1 + "px";
+var magnifyFontSize = wheelFontSize + 1 + "px";
+
+
 function separateLines(){ 
 var lines = []; //list of lines
 var line; //temporary line storage variable
@@ -39,7 +51,7 @@ lines.push(line); //push a new line into lines
 }
 line.push(word); //either way the word should go onto the current line, whether it's new or part of the current line
 }
-}
+
 return lines; //final array of lines
 }
 
@@ -49,31 +61,57 @@ p.innerHTML = p.innerText.split(/\s/).map(function(word){ //span every single wo
 return '<span>' + word + '</span>'}).join(' ');//SPAN ALL OF THEM
 }
 
-var lineList = separateLines();
-var maxline;
-var currline = 1;
-var normalFontSize = parseInt($("body").css("font-size"));
-var wheelFontSize = normalFontSize + 1 + "px";
-var magnifyFontSize = wheelFontSize + 1 + "px";
+function updateVars(){
+lineList=separateLines();
+maxLine=lineList.length;
+if(currLine>maxline){
+currLine=maxline;
+}
+}
 
-var givenText = document.getElementById("article").value;
+function magnify(){
+updateVars();
+var mainLine = '<span style="font-size: magnifyFontSize">' + lineList[currLine] + '</span>';
+if(currLine==0){
+var belowLine = '<span style="font-size: wheelFontSize">' + lineList[currLine + 1] + '</span>';
+}else if(currLine==maxLine){
+var aboveLine ='<span style="font-size: wheelFontSize">' + lineList[currLine - 1] + '</span>';
+}else{
+var belowLine = '<span style="font-size: wheelFontSize">' + lineList[currLine + 1] + '</span>';
+var aboveLine ='<span style="font-size: wheelFontSize">' + lineList[currLine - 1] + '</span>';
+}
+}
+
+function demagnify(){
+var mainLine = '<span style="font-size: normalFontSize">' + lineList[currLine] + '</span>';
+if(currLine==0){
+var belowLine = '<span style="font-size: normalFontSize">' + lineList[currLine + 1] + '</span>';
+}else if(currLine==maxLine){
+var aboveLine ='<span style="font-size: normalFontSize">' + lineList[currLine - 1] + '</span>';
+}else{
+var belowLine = '<span style="font-size: normalFontSize">' + lineList[currLine + 1] + '</span>';
+var aboveLine ='<span style="font-size: normalFontSize">' + lineList[currLine - 1] + '</span>';
+}
+}
+
 
 $(document).keyup( function (e) {
-if (e.which==38){
-currline = currline-1;
+if (e.which==38 && magnifyCheck=1){
+currline = currline - 1;
+magnify();
 }
-if (e.which==40){
-currline = currline+1;
+if (e.which==40 && magnifyCheck=1){
+currline = currline + 1;
+magnify();
 }
 if (e.which==36){
-
+magnifyCheck = Math.abs(magnifyCheck-1);
+if(magnifyCheck==1){
+magnify();
+}
 }
 });
-document.getElementById("myDIV").addEventListener("scroll", myFunction);
 
-function myFunction() {
-    document.getElementById("demo").innerHTML = "You scrolled in div.";
-}
 </script>
 
 </body>
